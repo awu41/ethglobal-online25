@@ -1,11 +1,31 @@
-const { ethers } = require("hardhat");
-
 async function main() {
+  // Import the ethers plugin explicitly
+  const hardhat = await import("hardhat");
+  const hre = hardhat.default;
+  
+  console.log("HRE keys:", Object.keys(hre));
+  console.log("Checking for ethers plugin...");
+  
+  // Try to access ethers
+  const ethers = hre.ethers;
+  console.log("Ethers:", ethers ? "found" : "not found");
+  
+  // If ethers is not found, it means the plugin is not loaded
+  // For Hardhat 3.x, we need to use the hardhat-ethers plugin
+  // Let's try importing it directly
+  
   console.log("🚀 Starting Research Prediction Market deployment...");
-
-  // Get the contract factory
-  const ResearchMarket = await ethers.getContractFactory("ResearchMarket");
-  const YellowSessionManager = await ethers.getContractFactory("YellowSessionManager");
+  
+  // Get the contract factory - try different approaches
+  let ResearchMarket, YellowSessionManager;
+  
+  if (ethers) {
+    ResearchMarket = await ethers.getContractFactory("ResearchMarket");
+    YellowSessionManager = await ethers.getContractFactory("YellowSessionManager");
+  } else {
+    console.error("❌ Ethers plugin not found. Check hardhat.config.ts for plugin configuration.");
+    process.exit(1);
+  }
 
   // For testing, we'll use a mock USDC address
   const mockUSDC = "0x1234567890123456789012345678901234567890";

@@ -1,6 +1,4 @@
-import { HardhatUserConfig } from "hardhat/config";
-
-const config: HardhatUserConfig = {
+export default {
   solidity: {
     version: "0.8.20",
     settings: {
@@ -15,18 +13,21 @@ const config: HardhatUserConfig = {
       type: "edr-simulated",
     },
     localhost: {
+      type: "http",
       url: "http://127.0.0.1:8545",
       chainId: 31337,
     },
     sepolia: {
-      url: "https://sepolia.infura.io/v3/YOUR_INFURA_KEY", // Replace with your Infura key
-      accounts: [], // Add your private key here
+      type: "http",
+      url: "https://sepolia.infura.io/v3/YOUR_INFURA_KEY",
+      accounts: [],
       chainId: 11155111,
     },
     nitrolite: {
-      url: "https://nitrolite.yellow.org", // Yellow's testnet
-      accounts: [], // Add your private key here
-      chainId: 1234, // Placeholder - need actual Yellow chain ID
+      type: "http",
+      url: "https://nitrolite.yellow.org",
+      accounts: [],
+      chainId: 1234,
     },
   },
   paths: {
@@ -36,5 +37,3 @@ const config: HardhatUserConfig = {
     artifacts: "./artifacts",
   },
 };
-
-export default config;
