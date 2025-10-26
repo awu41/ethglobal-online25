@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { setWalletCookie, getWalletCookie, removeWalletCookie } from '@/lib/cookies';
 
 // Yellow SDK types
 interface YellowSession {
@@ -68,6 +69,16 @@ export const YellowProvider: React.FC<YellowProviderProps> = ({ children }) => {
   // WebSocket connection
   const [ws, setWs] = useState<WebSocket | null>(null);
 
+  // Load saved wallet address from cookie on mount
+  useEffect(() => {
+    const savedAddress = getWalletCookie();
+    if (savedAddress) {
+      setUserAddress(savedAddress);
+      setIsConnected(true);
+      console.log('✅ Restored wallet from cookie:', savedAddress);
+    }
+  }, []);
+
   // Listen for account changes (but don't auto-connect on mount)
   useEffect(() => {
     if (!window.ethereum) return;
@@ -84,10 +95,13 @@ export const YellowProvider: React.FC<YellowProviderProps> = ({ children }) => {
         setTotalVolume(0);
         setGasSaved(0);
         setTimeSaved(0);
+        removeWalletCookie();
       } else {
         // User switched accounts
-        setUserAddress(accounts[0]);
-        console.log('🔄 Account changed:', accounts[0]);
+        const newAddress = accounts[0];
+        setUserAddress(newAddress);
+        setWalletCookie(newAddress);
+        console.log('🔄 Account changed:', newAddress);
       }
     };
 
@@ -132,6 +146,9 @@ export const YellowProvider: React.FC<YellowProviderProps> = ({ children }) => {
       const address = accounts[0];
       setUserAddress(address);
       setIsConnected(true);
+      
+      // Save to cookie for persistence (1 day expiry)
+      setWalletCookie(address);
       
       console.log('✅ Wallet connected:', address);
     } catch (error: any) {
@@ -301,6 +318,9 @@ export const YellowProvider: React.FC<YellowProviderProps> = ({ children }) => {
     setTotalVolume(0);
     setGasSaved(0);
     setTimeSaved(0);
+    
+    // Remove cookie on logout
+    removeWalletCookie();
     
     console.log('👋 Disconnected from Yellow Network');
   }, [ws]);
