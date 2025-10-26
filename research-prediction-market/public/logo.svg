@@ -1,0 +1,42 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="url(#bgGrad)"/>
+  
+  <!-- Randomly scattered stars -->
+  <g opacity="0.9">
+    <!-- Star 1 -->
+    <path d="M 60 50 L 62 57 L 69 57 L 63 61 L 66 68 L 60 64 L 54 68 L 57 61 L 51 57 L 58 57 Z" 
+          fill="white"/>
+    
+    <!-- Star 2 -->
+    <path d="M 130 80 L 131 84 L 135 84 L 132 87 L 133 91 L 130 88 L 127 91 L 128 87 L 125 84 L 129 84 Z" 
+          fill="white"/>
+    
+    <!-- Star 3 -->
+    <path d="M 50 120 L 51 126 L 57 126 L 52 129 L 54 135 L 50 132 L 46 135 L 48 129 L 43 126 L 49 126 Z" 
+          fill="white"/>
+    
+    <!-- Star 4 -->
+    <path d="M 90 70 L 91 75 L 96 75 L 92 78 L 94 83 L 90 80 L 86 83 L 88 78 L 84 75 L 89 75 Z" 
+          fill="white"/>
+    
+    <!-- Star 5 -->
+    <path d="M 140 130 L 141 135 L 146 135 L 142 138 L 144 143 L 140 140 L 136 143 L 138 138 L 134 135 L 139 135 Z" 
+          fill="white"/>
+    
+    <!-- Star 6 -->
+    <path d="M 70 100 L 71 105 L 76 105 L 72 108 L 74 113 L 70 110 L 66 113 L 68 108 L 64 105 L 69 105 Z" 
+          fill="white"/>
+    
+    <!-- Star 7 -->
+    <path d="M 125 55 L 126 60 L 131 60 L 127 63 L 129 68 L 125 65 L 121 68 L 123 63 L 119 60 L 124 60 Z" 
+          fill="white"/>
+  </g>
+</svg>
