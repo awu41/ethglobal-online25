@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Search, Filter, TrendingUp, Users, DollarSign, Clock, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { WalletNavButton } from "@/components/WalletNavButton";
 
 // Mock data for research markets
 const mockMarkets = [
@@ -120,7 +121,7 @@ export default function MarketsPage() {
               <Link href="/create">
                 <Button variant="ghost">Create Market</Button>
               </Link>
-              <Button>Connect Wallet</Button>
+              <WalletNavButton />
             </div>
           </div>
         </div>

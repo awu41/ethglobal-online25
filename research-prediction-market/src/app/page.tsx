@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ArrowRight, Zap, DollarSign, Clock, Users, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import MetricsLogger from "@/components/MetricsLogger";
+import { WalletNavButton } from "@/components/WalletNavButton";
 
 export default function Home() {
   // Demo metrics for console logging
@@ -33,7 +34,7 @@ export default function Home() {
               <Link href="/create">
                 <Button variant="ghost">Create Market</Button>
               </Link>
-              <Button>Connect Wallet</Button>
+              <WalletNavButton />
             </div>
           </div>
         </div>
